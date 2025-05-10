@@ -8,18 +8,25 @@ Ansible-playbook-i local host,install_nginx.yml
 
 Program 
 
-Name:My first play
-hosts:all
-tasks:
- name;ping my hosts
-ansible.builtin.win_ping:null
-name:print message 
-ansible.builtin.debug:
-Msg:hello world
-Name:start the MYSQL service
-ansible.buil.service:
-name;mysql 
-state:Started
+
+- name: Install Nginx on webservers
+  hosts: webservers
+  become: yes  # Run tasks as sudo
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: Start Nginx service
+      service:
+        name: nginx
+        state: started
+        enabled: yes
 
 7
 
