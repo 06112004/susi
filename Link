@@ -35,6 +35,8 @@ nano (playbook).yml
         content: "<h1>Welcome</h1>"
         dest: /var/www/html/index.html
 
+ansible-playbook webapp_setup.yml
+
 
 
 
